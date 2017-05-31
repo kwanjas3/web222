@@ -1,0 +1,115 @@
+<html>
+	<font size="8" color="green">Welcome to lab three</font><br/><br/>
+	<p id="p1">Number of rows:</p> <input type="text" id="t1" /><br/><br/>
+	<p id="p2">Number of cols:</p> <input type="text" id="t2" /><br/><br/>
+	
+	<button id="b1" onclick="generateTable()">Generate Table</button><br/><br/>
+	
+	<button id="b2" onclick="addColumn()">Add Column</button>
+	
+	<button id="b3" onclick="addRow()">Add Row</button>
+		
+	<script language="javascript">
+
+
+
+	
+
+
+	console.log(document.documentElement);
+	var root = document.documentElement;
+	var row = document.createElement("tr");
+	var cell = document.createElement("td");
+	var body = document.getElementsByTagName("body")[0];
+	var tbl = document.createElement("table");
+  	var tblBody = document.createElement("tbody");
+  	var nrow = 0;
+  	var ncol = 0;
+  	var br1 = document.getElementsByTagName("br")[0]
+  	var br2 = document.getElementsByTagName("br")[1]
+  	var br3 = document.getElementsByTagName("br")[2]
+  	var br4 = document.getElementsByTagName("br")[3]
+  	var br5 = document.getElementsByTagName("br")[4]
+  	var br6 = document.getElementsByTagName("br")[5]
+  	var br7 = document.getElementsByTagName("br")[6]
+  	var br8 = document.getElementsByTagName("br")[7]
+
+	
+		function generateTable(){	
+  			
+  			nrow = document.getElementById("t1").value;
+			ncol = document.getElementById("t2").value;
+			var Button1 = document.getElementById("b1");
+			var rTxtRow = document.getElementById("p1");
+			var cTxtCol = document.getElementById("p2");
+			var rTxtr = document.getElementById("t1");
+			var rTxtc = document.getElementById("t2");
+
+			for (i = 0; i < nrow; i++){
+				//addRow();
+				var row = document.createElement("tr");
+				for(x = 0; x < ncol; x++){
+					//addColumn();
+					cell = document.createElement("td");
+					var cellText = document.createTextNode("row "+(i+1)+", column "+(x+1));
+      				cell.appendChild(cellText);
+      				row.appendChild(cell);
+				}
+				tblBody.appendChild(row);
+			}
+			  // put the <tbody> in the <table>
+  		tbl.appendChild(tblBody);
+  		// appends <table> into <body>
+  		body.appendChild(tbl);
+  		// sets the border attribute of tbl to 2;
+  		tbl.setAttribute("border", "2");
+  		
+
+  		body.removeChild(Button1);
+  		body.removeChild(rTxtRow);
+  		body.removeChild(cTxtCol);
+  		body.removeChild(rTxtr);
+  		body.removeChild(rTxtc);
+  		body.removeChild(document.getElementsByTagName("font")[0]);
+  		body.removeChild(br1);
+  		body.removeChild(br2);
+  		body.removeChild(br3);
+  		body.removeChild(br4);
+  		body.removeChild(br5);
+  		body.removeChild(br6);
+  		body.removeChild(br7);
+  		body.removeChild(br8);
+  		
+
+
+
+		}
+
+		function addColumn(){
+			var curRow = document.getElementsByTagName("tr");
+			ncol++;
+			for (x = 0; x < ncol; x++){
+				cell = document.createElement("td");
+				var cellText = document.createTextNode("row "+(x+1)+", column "+ncol);
+				cell.appendChild(cellText);
+				curRow[x].appendChild(cell);
+			}
+
+		
+		}
+		function addRow(){
+			var row = document.createElement("tr");
+			nrow++;
+			for (i = 0; i < ncol; i++){
+				cell = document.createElement("td");
+				cellText = document.createTextNode("row "+nrow+", column "+(i+1));
+				cell.appendChild(cellText);	
+				row.appendChild(cell);			
+			}
+			tblBody.appendChild(row);
+		}
+
+	
+	</script>
+	
+</html>
