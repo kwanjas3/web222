@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	
+</head>
+<body>
+<p>paragraph one</p>
+<p>Paragraph 2</p>
+<p>Paragraph 3</p>
+</body>
+
+<script type="text/javascript">
+var p1 = document.getElementsByTagName("p")[0];
+var p2 = document.getElementsByTagName("p")[1];
+var p3 = document.getElementsByTagName("p")[2];
+var headlol = document.getElementsByTagName("head")[0];
+var link = document.createElement("link");
+headlol.appendChild(link);
+
+link.setAttribute("rel", "stylesheet");
+link.setAttribute("type", "text/css");
+link.setAttribute("href", "./lab7.css");
+p1.setAttribute("style", "background-color: red;");
+p2.style.backgroundColor = "blue";
+p3.setAttribute("class", "load")
+
+</script>
+</html>
