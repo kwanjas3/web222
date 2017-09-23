@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CanvasDemo</title>
+    <style>
+        canvas {
+            outline: 1px solid #000;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <canvas>
+
+    </canvas>
+</body>
+
+<script>
+    var canvas = document.querySelector('canvas');
+    var context = canvas.getContext('2d');
+
+    canvas.height = 800;
+    canvas.width = 600;
+
+    var flakes = 50;
+    var flakeImage = new Image();
+    flakeImage.src = "KappaSmall.png";
+
+    var x;
+    var y;
+
+
+    //velocity
+    var vx;
+    var vy;
+
+    var flakeArray = [];
+
+    for (var i = 0; i < flakes; i++) {
+        flakeArray.push(new createFlake);
+    }
+
+    function createFlake() {
+        this.x = Math.round(Math.random() * canvas.width);
+        this.y = Math.round(Math.random() * canvas.height);
+        this.vy = Math.round(Math.random() * 4 + 1);
+    }
+
+    function drawFlake() {
+        context.fillStyle = '#000'; 
+        context.rect(0,0, canvas.width, canvas.height);
+        context.fill();
+
+        for (var i = 0; i < flakeArray.length; i++){
+            var f = flakeArray[i];
+
+            context.drawImage(flakeImage, f.x, f.y)
+            f.y+= f.vy;
+
+            if(f.y > canvas.height){
+                f.y = -flakeImage.height;
+            }
+        }
+        requestAnimationFrame(drawFlake);
+    }
+
+    drawFlake();
+
+</script>
+
+</html>
