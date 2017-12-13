@@ -1,0 +1,132 @@
+<div class="row">
+	<section class="main col-md-12">
+		<article>
+			<h2>Jason Kwan - The Developer</h2>
+			<p>Hello, I am learning how to use express and node js to make simple web apps</p>
+			<p>first you get the knowledge</p>
+			<p>then you get money</p>
+			<p>then you get the woman.</p>
+		</article>
+	</section>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>Leave a Comment</h3>
+		<div class="well">
+			<div class="row">
+				<div class="col-md-12">
+
+					<form method="post" action="/about/addComment">
+						<fieldset>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input class="form-control" id="authorName" name="authorName" type="text" placeholder="Name" />
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input class="form-control" id="authorEmail" name="authorEmail" type="Email" placeholder="Email" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Subject" name="subject">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<textarea class="form-control" rows="8" placeholder="Comment" name="commentText"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 col-md-offset-10">
+								<button type="submit" class="btn btn-primary form-control">Comment</button>
+							</div>
+						</fieldset>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{#if data}}
+<div class="row">
+	<div class="col-md-12">
+		<h3>All Comments</h3>
+		<hr />
+	</div>
+</div>
+{{/if}} {{#each data}}
+<div class="row">
+	<div class="col-md-12">
+		<div class="well">
+			<div class="row">
+				<div class="col-md-12">
+
+					{{commentText}}
+					<br />
+					<br /> Posted on: {{postedDate}}
+					<a href="mailto:{{authorEmail}}">Comment {{@index}} Author</a>
+
+				</div>
+			</div>
+			{{#each replies}}
+			<div class="row">
+				<div class="col-md-12">
+					<div class="well">REPLY[{{@index}}]</div>
+				</div>
+			</div>
+			{{/each}}
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-primary btn-sm pull-right" data-toggle="collapse" data-target="#reply-
+{{_id}}" aria-expanded="false">Reply</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="collapse" id="reply-{{_id}}">
+			<div class="well">
+				<div class="row">
+					<div class="col-md-12">
+
+						<form action="/about/addReply" method="POST">
+							<div class="well">
+								<div class="row">
+									<div class="col-md-6">
+										<input type="text" class="form-control" placeholder="Name" name="authorName">
+										<br>
+									</div>
+									<div class="col-md-6">
+
+										<input type="email" class="form-control" placeholder="Email" name="authorEmail">
+										<br>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<textarea class="form-control" rows="8" placeholder="Comment" name="commentText"></textarea>
+										<br>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-2 col-md-offset-10">
+										<input type="hidden" value={{replies.comment_id}} name="comment_id">
+										<button type="submit" class="btn btn-primary form-control">Reply</button>
+									</div>
+								</div>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{/each}}
